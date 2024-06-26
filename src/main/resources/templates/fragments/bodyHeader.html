@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light" th:fragment="bodyHeader">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">여기</a>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav ms-auto">
+                <th:block sec:authorize="isAuthenticated()">
+                    <span class="nav-link" th:text="${#authentication?.principal.nickname + '님'}"></span>
+                    <a class="nav-link" href="/logout">로그아웃</a>
+                </th:block>
+                <th:block sec:authorize="!isAuthenticated()">
+                    <a class="nav-link" href="/login">로그인</a>
+                    <a class="nav-link" href="/signup">회원가입</a>
+                </th:block>
+            </div>
+        </div>
+    </div>
+</nav>
+</body>
+</html>
